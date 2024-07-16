@@ -8,10 +8,11 @@ import Container from "./elements/Container";
 import Login from "./components/Login";
 import RegisterUsers from "./components/RegisterUsers";
 import ExpenseEdit from "./components/ExpenseEdit";
-import ExpensesCategory from "./components/ExpensesCategory";
-import ExpensesList from "./components/ExpensesList";
+import ExpenseCategory from "./components/ExpensesCategory";
+import ExpenseList from "./components/ExpensesList";
 import { Helmet } from "react-helmet";
 import favicon from "./images/logo.png";
+import Background from "./elements/Background";
 
 WebFont.load({
   google: {
@@ -30,16 +31,15 @@ root.render(
       <Container>
         <Routes>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/register-users" element={<RegisterUsers />}></Route>
-          <Route path="/edit-expense/:id" element={<ExpenseEdit />}></Route>
-          <Route path="/expenses-list" element={<ExpensesList />}></Route>
-          <Route
-            path="/expenses-category"
-            element={<ExpensesCategory />}
-          ></Route>
+          <Route path="/registro-usuario" element={<RegisterUsers />}></Route>
+          <Route path="/editar-gasto/:id" element={<ExpenseEdit />}></Route>
+          <Route path="/lista-gastos" element={<ExpenseList />}></Route>
+          <Route path="/gastos-categoria" element={<ExpenseCategory />}></Route>
           <Route path="/" element={<App />} />
         </Routes>
       </Container>
     </BrowserRouter>
+
+    <Background></Background>
   </>
 );
