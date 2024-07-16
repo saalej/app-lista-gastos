@@ -24,7 +24,6 @@ root.render(
   <>
     <Helmet>
       <link rel="shortcut icon" href={favicon} type="image/x-icon" />
-      <title>Gastos</title>
     </Helmet>
 
     <BrowserRouter>
