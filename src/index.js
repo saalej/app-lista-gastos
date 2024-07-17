@@ -31,7 +31,7 @@ root.render(
       <Container>
         <Routes>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/registro-usuario" element={<RegisterUsers />}></Route>
+          <Route path="/registrar-usuario" element={<RegisterUsers />}></Route>
           <Route path="/editar-gasto/:id" element={<ExpenseEdit />}></Route>
           <Route path="/lista-gastos" element={<ExpenseList />}></Route>
           <Route path="/gastos-categoria" element={<ExpenseCategory />}></Route>
