@@ -8,10 +8,14 @@ import {
 } from "../elements/FormElements";
 import Button from "../elements/Button";
 import { ReactComponent as PlusIcon } from "../images/plus.svg";
+import SelecCategory from "./SelectCategory";
+import DatePicker from "./DatePicker";
 
 const ExpenseForm = () => {
   const [descripcion, setDescription] = useState("");
   const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("Hogar");
+  const [date, setDate] = useState(new Date());
 
   const handleChange = (e) => {
     if (e.target.name === "description") {
@@ -24,8 +28,8 @@ const ExpenseForm = () => {
   return (
     <Form>
       <FilterContainer>
-        <p>Select</p>
-        <p>Date Picker</p>
+        <SelecCategory category={category} setCategory={setCategory} />
+        <DatePicker date={date} setDate={setDate} />
       </FilterContainer>
       <div>
         <Input
