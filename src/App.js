@@ -8,6 +8,7 @@ import {
 } from "./elements/Header";
 import Button from "./elements/Button";
 import BtnSignOff from "./elements/BtnSignOff";
+import ExpenseForm from "./components/ExpenseForm";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           </ButtonContainer>
         </HeaderContainer>
       </Header>
+      <ExpenseForm></ExpenseForm>
     </>
   );
 };
