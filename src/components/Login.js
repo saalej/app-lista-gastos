@@ -52,7 +52,6 @@ const Login = () => {
     }
 
     try {
-      debugger;
       await signInWithEmailAndPassword(auth, email, password);
       setStateAlert(true);
       setAlert({

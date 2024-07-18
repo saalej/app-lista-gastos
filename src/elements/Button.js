@@ -21,7 +21,7 @@ const Button = styled(Link)`
   outline: none;
 
   svg {
-    height: ${(props) => (props.iconoGrande ? "100%" : "0.75rem;")}; /* 12px */
+    height: ${(props) => (props.bigIcon ? "100%" : "0.75rem;")}; /* 12px */
     fill: white;
   }
 `;
