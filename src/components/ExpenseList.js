@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Header, Title } from "../elements/Header";
 import BtnReturn from "../elements/BtnReturn";
 import { useAuth } from "../contexts/AuthStore";
+import TotalPendingBar from "./TotalSpendingBar";
 
 const ExpenseList = () => {
   const { user } = useAuth();
@@ -17,6 +18,7 @@ const ExpenseList = () => {
         <Title>Lista de gastos</Title>
         <BtnReturn></BtnReturn>
       </Header>
+      <TotalPendingBar></TotalPendingBar>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import React from "react";
+import React, { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import styled from "styled-components";
@@ -29,6 +29,7 @@ const InputContainer = styled.div`
 
   .rdp {
     position: absolute;
+    z-index: 1;
   }
 
   .rdp-months {
@@ -56,10 +57,32 @@ const formatDate = (date = new Date()) => {
 };
 
 const DatePicker = ({ date, setDate }) => {
+  const [isShown, setIsShown] = useState(false);
+
+  const handleInputClick = () => {
+    setIsShown(!isShown);
+  };
+
+  const handleDaySelect = (selectedDate) => {
+    setDate(selectedDate);
+    setIsShown(false); // Ocultar el calendario al seleccionar una fecha
+  };
   return (
     <InputContainer>
-      <input type="text" readOnly value={formatDate(date)}></input>
-      <DayPicker mode="single" selected={date} onSelect={setDate} locale={es} />
+      <input
+        type="text"
+        readOnly
+        value={formatDate(date)}
+        onClick={handleInputClick}
+      ></input>
+      {isShown && (
+        <DayPicker
+          mode="single"
+          selected={date}
+          onSelect={handleDaySelect}
+          locale={es}
+        />
+      )}
     </InputContainer>
   );
 };

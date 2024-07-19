@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Header, Title } from "../elements/Header";
 import BtnReturn from "../elements/BtnReturn";
+import TotalPendingBar from "./TotalSpendingBar";
 
 const ExpenseCategory = () => {
   return (
@@ -13,6 +14,7 @@ const ExpenseCategory = () => {
         <Title>Gastos por categoria</Title>
         <BtnReturn></BtnReturn>
       </Header>
+      <TotalPendingBar></TotalPendingBar>
     </>
   );
 };

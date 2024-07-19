@@ -9,6 +9,7 @@ import {
 import Button from "./elements/Button";
 import BtnSignOff from "./elements/BtnSignOff";
 import ExpenseForm from "./components/ExpenseForm";
+import TotalPendingBar from "./components/TotalSpendingBar";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         </HeaderContainer>
       </Header>
       <ExpenseForm></ExpenseForm>
+      <TotalPendingBar></TotalPendingBar>
     </>
   );
 };
