@@ -57,7 +57,7 @@ root.render(
             />
 
             <Route
-              path="/editar-gasto/:id"
+              path="/editar/:id"
               element={
                 <PrivateRute>
                   <ExpenseEdit />

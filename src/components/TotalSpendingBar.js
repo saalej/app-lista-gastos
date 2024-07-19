@@ -26,7 +26,7 @@ const TotalPendingBar = () => {
   return (
     <TotalBar>
       <p>Total gastado en el mes: </p>
-      <p>{formatAmount(1550.4)}</p>
+      <p>{formatAmount(0)}</p>
     </TotalBar>
   );
 };
