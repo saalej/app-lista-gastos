@@ -9,7 +9,12 @@ import { ReactComponent as HealthIcon } from "./../images/cat_salud-e-higiene.sv
 import { ReactComponent as TransportIcon } from "./../images/cat_transporte.svg";
 
 const IconsCategory = ({ id }) => {
-  switch (id.toLowerCase()) {
+  switch (
+    id
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+  ) {
     case "comida":
       return <FoodIcon></FoodIcon>;
     case "cuentas y pagos":

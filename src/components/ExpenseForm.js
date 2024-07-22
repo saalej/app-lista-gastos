@@ -54,7 +54,7 @@ const ExpenseForm = () => {
             date: getUnixTime(date), // Guardar la fecha en formato Unix
           })
             .then(() => {
-              setCategory("Home");
+              setCategory("Hogar");
               setDescription("");
               setAmount("");
               setDate(new Date());

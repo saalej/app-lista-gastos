@@ -6,7 +6,7 @@ const AddExpensive = ({ category, description, amount, date, uid }) => {
     Uid: uid,
     Categoria: category,
     Descripcion: description,
-    Cantidad: amount,
+    Cantidad: Number(amount),
     Fecha: date,
   });
 };

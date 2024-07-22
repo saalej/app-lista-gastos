@@ -7,8 +7,6 @@ import useGetExpenses from "../hooks/useGetExpenses";
 import {
   List,
   ListElement,
-  ListCategory,
-  ListCategoryElement,
   Category,
   Description,
   Value,
@@ -23,13 +21,15 @@ import {
 import IconsCategory from "../elements/IconsCategory";
 import formatAmount from "../functions/ConvertToCurrency";
 import { ReactComponent as EditIcon } from "./../images/editar.svg";
-import { ReactComponent as EraseIcon } from "./../images/borrar.svg";
+import { ReactComponent as DeleteExpense } from "./../images/borrar.svg";
 import { Link } from "react-router-dom";
 import Button from "../elements/Button";
 import { format, fromUnixTime } from "date-fns";
 import { es } from "date-fns/locale";
+import deleteExpense from "../firebase/DeleteExpense";
+
 const ExpenseList = () => {
-  const [expenses] = useGetExpenses();
+  const [expenses, isThereMoreContent, getMoreExpenses] = useGetExpenses();
 
   const formatDate = (date) => {
     return format(fromUnixTime(date), "dd 'de'  MMMM 'de' yyyy", {
@@ -75,21 +75,26 @@ const ExpenseList = () => {
                   <ButtonAction as={Link} to={`/editar/${expense.id}`}>
                     <EditIcon></EditIcon>
                   </ButtonAction>
-                  <ButtonAction>
-                    <EraseIcon></EraseIcon>
+                  <ButtonAction onClick={() => deleteExpense(expense.id)}>
+                    <DeleteExpense></DeleteExpense>
                   </ButtonAction>
                 </ButtonContainer>
               </ListElement>
             </div>
           );
         })}
-        <CentralButtonContainer>
-          <ButtonLoadMore>Cargar más...</ButtonLoadMore>
-        </CentralButtonContainer>
+        {isThereMoreContent && (
+          <CentralButtonContainer>
+            <ButtonLoadMore onClick={() => getMoreExpenses()}>
+              Cargar más...
+            </ButtonLoadMore>
+          </CentralButtonContainer>
+        )}
 
         {expenses.length === 0 && (
           <SubtitleContainer>
             <Subtitle>No hay gastos por mostrar</Subtitle>
+
             <Button as={Link} to="/">
               Agregar gasto
             </Button>
