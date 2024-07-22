@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import theme from "../Theme";
 import formatAmount from "../functions/ConvertToCurrency";
+import { useTotalMonth } from "../contexts/TotalSpentMonthContext";
 
 const TotalBar = styled.div`
   background: ${theme.verde};
@@ -22,13 +23,15 @@ const TotalBar = styled.div`
   }
 `;
 
-const TotalPendingBar = () => {
+const TotalSpendingBar = () => {
+  const totalMonth = useTotalMonth();
+  debugger;
   return (
     <TotalBar>
       <p>Total gastado en el mes: </p>
-      <p>{formatAmount(0)}</p>
+      <p>{formatAmount(totalMonth)}</p>
     </TotalBar>
   );
 };
 
-export default TotalPendingBar;
+export default TotalSpendingBar;

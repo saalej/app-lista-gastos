@@ -15,6 +15,7 @@ import favicon from "./images/logo.png";
 import Background from "./elements/Background";
 import { AuthProvider } from "./contexts/AuthStore";
 import PrivateRute from "./components/PrivateRute";
+import { TotalSpentMonthProvider } from "./contexts/TotalSpentMonthContext";
 
 WebFont.load({
   google: {
@@ -29,54 +30,55 @@ root.render(
       <link rel="shortcut icon" href={favicon} type="image/x-icon" />
     </Helmet>
     <AuthProvider>
-      <BrowserRouter>
-        <Container>
-          <Routes>
-            <Route path="/login" element={<Login />}></Route>
-            <Route
-              path="/registrar-usuario"
-              element={<RegisterUsers />}
-            ></Route>
+      <TotalSpentMonthProvider>
+        <BrowserRouter>
+          <Container>
+            <Routes>
+              <Route path="/login" element={<Login />}></Route>
+              <Route
+                path="/registrar-usuario"
+                element={<RegisterUsers />}
+              ></Route>
 
-            <Route
-              path="/gastos-categoria"
-              element={
-                <PrivateRute>
-                  <ExpenseCategory />
-                </PrivateRute>
-              }
-            />
+              <Route
+                path="/gastos-categoria"
+                element={
+                  <PrivateRute>
+                    <ExpenseCategory />
+                  </PrivateRute>
+                }
+              />
 
-            <Route
-              path="/lista-gastos"
-              element={
-                <PrivateRute>
-                  <ExpenseList />
-                </PrivateRute>
-              }
-            />
+              <Route
+                path="/lista-gastos"
+                element={
+                  <PrivateRute>
+                    <ExpenseList />
+                  </PrivateRute>
+                }
+              />
 
-            <Route
-              path="/editar/:id"
-              element={
-                <PrivateRute>
-                  <ExpenseEdit />
-                </PrivateRute>
-              }
-            />
+              <Route
+                path="/editar/:id"
+                element={
+                  <PrivateRute>
+                    <ExpenseEdit />
+                  </PrivateRute>
+                }
+              />
 
-            <Route
-              path="/"
-              element={
-                <PrivateRute>
-                  <App />
-                </PrivateRute>
-              }
-            />
-          </Routes>
-        </Container>
-      </BrowserRouter>
-
+              <Route
+                path="/"
+                element={
+                  <PrivateRute>
+                    <App />
+                  </PrivateRute>
+                }
+              />
+            </Routes>
+          </Container>
+        </BrowserRouter>
+      </TotalSpentMonthProvider>
       <Background></Background>
     </AuthProvider>
   </>

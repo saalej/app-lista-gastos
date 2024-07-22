@@ -58,7 +58,7 @@ const useGetExpenses = () => {
       (snapshot) => {
         if (snapshot.docs.length > 0) {
           setLastExpense(snapshot.docs[snapshot.docs.length - 1]);
-          setIsThereMoreContent(true);
+          setIsThereMoreContent(snapshot.docs.length === 10);
         } else {
           setIsThereMoreContent(false);
         }
