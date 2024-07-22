@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ButtonContainer,
   BigInput,
@@ -14,17 +14,37 @@ import AddExpensive from "../firebase/AddExpensive";
 import { fromUnixTime, getUnixTime } from "date-fns";
 import { useAuth } from "./../contexts/AuthStore";
 import Alert from "../elements/Alert";
+import { useNavigate } from "react-router-dom";
+import EditExpensive from "../firebase/EditExpense";
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ expense, id }) => {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("Hogar");
   const [date, setDate] = useState(new Date());
+  const [isEdit, setIsEdit] = useState(false);
 
   const [stateAlert, setStateAlert] = useState(false);
   const [alert, setAlert] = useState({});
 
   const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Revisar si ya hay algun gasto
+    // Establecer el gasto en caso de que exista
+    if (expense) {
+      setIsEdit(true);
+      if (expense.Uid === user.uid) {
+        setDescription(expense.Descripcion);
+        setAmount("$" + expense.Cantidad);
+        setDate(fromUnixTime(expense.Fecha));
+        setCategory(expense.Categoria);
+      } else {
+        navigate("/lista-gastos");
+      }
+    }
+  }, [expense, user, navigate]);
 
   const handleChange = (e) => {
     if (e.target.name === "description") {
@@ -46,32 +66,60 @@ const ExpenseForm = () => {
         const amountFloat = parseFloat(amount.substring(1)).toFixed(2);
 
         if (amountFloat) {
-          await AddExpensive({
-            uid: user?.uid,
-            description: description,
-            amount: amountFloat, // Cantidad sin el simbolo $ y como decimal
-            category: category,
-            date: getUnixTime(date), // Guardar la fecha en formato Unix
-          })
-            .then(() => {
-              setCategory("Hogar");
-              setDescription("");
-              setAmount("");
-              setDate(new Date());
-
-              setStateAlert(true);
-              setAlert({
-                type: "success",
-                message: "Gasto agreado correctamente",
-              });
+          if (isEdit && expense) {
+            EditExpensive({
+              id: id,
+              category: category,
+              description: description,
+              amount: amountFloat,
+              date: getUnixTime(date),
             })
-            .catch((error) => {
-              setStateAlert(true);
-              setAlert({
-                type: "error",
-                message: "Error al agregar el gasto: " + error,
+              .then(() => {
+                setStateAlert(true);
+                setAlert({
+                  type: "success",
+                  message: "El gasto fue editado correctamente",
+                });
+              })
+              .catch((error) => {
+                setStateAlert(true);
+                setAlert({
+                  type: "error",
+                  message: "Error al editar el gasto: " + error,
+                });
               });
-            });
+
+            setTimeout(() => {
+              navigate("/lista-gastos");
+            }, 1500);
+          } else {
+            await AddExpensive({
+              uid: user?.uid,
+              description: description,
+              amount: amountFloat, // Cantidad sin el simbolo $ y como decimal
+              category: category,
+              date: getUnixTime(date), // Guardar la fecha en formato Unix
+            })
+              .then(() => {
+                setCategory("Hogar");
+                setDescription("");
+                setAmount("");
+                setDate(new Date());
+
+                setStateAlert(true);
+                setAlert({
+                  type: "success",
+                  message: "Gasto agreado correctamente",
+                });
+              })
+              .catch((error) => {
+                setStateAlert(true);
+                setAlert({
+                  type: "error",
+                  message: "Error al agregar el gasto: " + error,
+                });
+              });
+          }
         } else {
           setStateAlert(true);
           setAlert({
@@ -122,7 +170,8 @@ const ExpenseForm = () => {
           ></BigInput>
           <ButtonContainer>
             <Button as="button" primario="true" conIcono type="submit">
-              Agregar gasto<PlusIcon></PlusIcon>
+              {!isEdit ? "Agregar gasto" : "Editar gasto"}
+              <PlusIcon></PlusIcon>
             </Button>
           </ButtonContainer>
         </div>
