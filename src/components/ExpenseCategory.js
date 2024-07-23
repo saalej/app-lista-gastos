@@ -3,12 +3,10 @@ import { Helmet } from "react-helmet";
 import { Header, Title } from "../elements/Header";
 import BtnReturn from "../elements/BtnReturn";
 import TotalPendingBar from "./TotalSpendingBar";
-import useGetExpensesMonth from "../hooks/useGetExpensesMonth";
+import useGetExpensesMonthCategory from "../hooks/useGetExpensesMonthCategory";
 
 const ExpenseCategory = () => {
-  const expensesMonth = useGetExpensesMonth();
-
-  console.log(expensesMonth);
+  useGetExpensesMonthCategory();
 
   return (
     <>

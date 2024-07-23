@@ -25,7 +25,7 @@ const TotalBar = styled.div`
 
 const TotalSpendingBar = () => {
   const totalMonth = useTotalMonth();
-  debugger;
+
   return (
     <TotalBar>
       <p>Total gastado en el mes: </p>
