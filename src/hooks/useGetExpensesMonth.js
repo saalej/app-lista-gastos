@@ -43,6 +43,7 @@ const useGetExpensesMonth = () => {
       return unsuscribe;
     }
   }, [user]);
+
   return expensesMonth;
 };
 

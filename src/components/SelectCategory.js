@@ -68,7 +68,7 @@ const SelecCategory = ({ category, setCategory }) => {
     { id: "hogar", texto: "Hogar" },
     { id: "transporte", texto: "Transporte" },
     { id: "ropa", texto: "Ropa" },
-    { id: "salud e higiene", texto: "Salud e Higiene" },
+    { id: "salud e higiene", texto: "Salud e higiene" },
     { id: "compras", texto: "Compras" },
     { id: "diversion", texto: "Diversión" },
   ];

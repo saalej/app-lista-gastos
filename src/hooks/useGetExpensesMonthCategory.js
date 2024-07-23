@@ -22,7 +22,7 @@ const useGetExpensesMonthCategory = () => {
         Ropa: 0,
         "Salud e higiene": 0,
         Compras: 0,
-        Diversion: 0,
+        Diversión: 0,
       }
     );
 
