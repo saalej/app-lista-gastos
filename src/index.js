@@ -17,6 +17,8 @@ import { AuthProvider } from "./contexts/AuthStore";
 import PrivateRute from "./components/PrivateRute";
 import { TotalSpentMonthProvider } from "./contexts/TotalSpentMonthContext";
 
+// https://app-react-lista-gastos.web.app/login
+
 WebFont.load({
   google: {
     families: ["Work Sans:400,500,700", "sans-serif"],
